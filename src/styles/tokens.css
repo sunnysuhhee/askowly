@@ -1,0 +1,78 @@
+/*
+ * AskOwly design tokens.
+ *
+ * Matches the logo: warm cream paper, sand cards, navy ink and outlines, orange buttons.
+ * Each helper has its own color (medicines teal, movement sky blue, scam checks lavender),
+ * set by data-feature on a wrapper. Body and controls default to 27px (about 20pt).
+ * Tap targets are at least 60px.
+ *
+ * Contrast (WCAG 2.x), checked with src/design.test.ts:
+ *   navy on cream, sand, pale orange and every feature-soft tint: 11:1 or more
+ *   navy on orange and on each feature color: 5.5:1 or more (bold button text)
+ *   cream on brick 8.9:1, cream on olive 7.5:1
+ *   amber and blush are outlines and decoration only, never body text.
+ */
+:root {
+  /* Palette (from the logo) */
+  --cream: #fff7eb;
+  --sand: #ffe9c7;
+  --navy: #1f2a44;
+  --slate: #4a5068;
+  --amber: #e08a1e;
+  --orange: #f5a742;
+  --blush: #f4a99a;
+  --pale-orange: #ffefd6;
+
+  /* Alert colors (always paired with a symbol and words) */
+  --brick: #8e2a1e;
+  --brick-soft: #f9ded6;
+  --olive: #3d5a26;
+  --olive-soft: #e4ecd2;
+
+  /* Feature color: orange by default, replaced per helper below */
+  --feature: var(--orange);
+  --feature-soft: var(--sand);
+  --feature-deep: var(--amber);
+
+  /* Roles */
+  --bg: var(--cream);
+  --surface: var(--sand);
+  --surface-raised: var(--cream);
+  --ink: var(--navy);
+  --line: var(--navy);
+  --accent: var(--feature);
+  --focus-ring: var(--navy);
+  --focus-halo: var(--feature);
+
+  /* Type: scales with Settings > Text size (data-size on <html>) */
+  --base: 27px;
+  --text: var(--base);
+  --text-fine: calc(var(--base) * 0.93); /* tags only; still above 24px */
+  --text-lg: calc(var(--base) * 1.15);
+  --h3: calc(var(--base) * 1.1);
+  --h2: calc(var(--base) * 1.25);
+  --h1: calc(var(--base) * 1.5);
+  --font: 'Atkinson Hyperlegible', 'Verdana', 'Segoe UI', system-ui, sans-serif;
+  --font-logo: 'Fredoka', 'Atkinson Hyperlegible', system-ui, sans-serif;
+
+  /* Shape & spacing */
+  --tap: 60px;
+  --stroke: 3px;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --gap: 22px;
+  --maxw: 1040px;
+  --readw: 44rem;
+  --shadow: 0 4px 0 var(--navy);
+
+  font-size: var(--base);
+}
+
+:root[data-size='larger'] { --base: 31px; }
+:root[data-size='largest'] { --base: 36px; }
+
+/* One color per helper. Roles are re-declared so var() picks up the new feature color. */
+[data-feature] { --accent: var(--feature); --focus-halo: var(--feature); --surface: var(--feature-soft); }
+[data-feature='meds'] { --feature: #4cc2b3; --feature-soft: #dcf4f0; --feature-deep: #13756a; }
+[data-feature='move'] { --feature: #7ab8ec; --feature-soft: #e1eefb; --feature-deep: #2563a3; }
+[data-feature='scam'] { --feature: #b9a0e3; --feature-soft: #eee7fa; --feature-deep: #5f3f9c; }

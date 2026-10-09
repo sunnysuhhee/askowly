@@ -1,0 +1,9 @@
+node_modules
+dist
+dev-dist
+# Secrets: never commit real keys. Only the template is tracked.
+.env
+.env.*
+!.env.example
+.vercel
+coverage
