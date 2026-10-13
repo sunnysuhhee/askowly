@@ -38,7 +38,7 @@ export function ReminderWatcher() {
             const msg = `Time for your ${med.name}.`
             speak(msg)
             if ('Notification' in window && Notification.permission === 'granted' && document.hidden) {
-              new Notification('AskOwly', { body: msg, icon: '/icon.svg' })
+              new Notification('AskOwly', { body: msg, icon: '/icon-192.png' })
             }
             return
           }
